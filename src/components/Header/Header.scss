@@ -1,0 +1,23 @@
+a {
+  text-decoration: none;
+}
+
+.header {
+  align-items: center;
+  display: flex;
+  height: 6vh;
+  justify-content: center;
+  list-style: none;
+  width: 100%;
+  z-index: 1;
+
+  &-item {
+    color: #000;
+    font-family: "Arial", serif;
+    font-size: 15px;
+    letter-spacing: 1px;
+    margin: 0 0px;
+    padding-right: 15px;
+    text-transform: uppercase;
+  }
+}

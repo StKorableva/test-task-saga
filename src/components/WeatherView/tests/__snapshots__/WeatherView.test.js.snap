@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<WeatherView /> should match snapshot 1`] = `
+<div
+  className="main"
+>
+  <h1
+    className="main__logo"
+  >
+    saint petersburg
+  </h1>
+  <p
+    className="main__temp"
+  >
+    Temperature: 
+    280.5
+     
+  </p>
+</div>
+`;
+
+exports[`<WeatherView /> should render Spinner when data is loading 1`] = `<Spinner />`;

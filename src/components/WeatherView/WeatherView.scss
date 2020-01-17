@@ -1,0 +1,16 @@
+.main {
+  color: #000;
+  font-family: Arial;
+  font-weight: 600;
+  margin-bottom: 50px;
+  text-transform: uppercase;
+  z-index: 1;
+
+  &__logo {
+    font-size: 30px;
+  }
+
+  &__temp {
+    font-size: 20px;
+  }
+}

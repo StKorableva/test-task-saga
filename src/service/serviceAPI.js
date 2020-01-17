@@ -1,11 +1,13 @@
 import axios from 'axios';
-const ID = 'f5eaa55feb2c10d251d92694304634b6';
+import {CITY_ID, CITY_FULL_NAME} from '../constants/cityConstants';
+const KEY = 'f5eaa55feb2c10d251d92694304634b6';
 
 export default function getWeather(city) {
-  if(city === 'saint-petersburg') { //TODO: think about elegant way for few cities
-    city = city.replace('-', ' '); 
-  }
+  const cityId = (city === CITY_FULL_NAME.petersburg) ? CITY_ID.petersburg :
+  (city === CITY_FULL_NAME.moscow) ? CITY_ID.moscow : 
+  (city === CITY_FULL_NAME.rostov) ? CITY_ID.rostov : null;
+
   return axios.get(
-    `https://api.openweathermap.org/data/2.5/weather?q=${city},ru&APPID=${ID}`
+    `https://api.openweathermap.org/data/2.5/weather?id=${cityId}&APPID=${KEY}`
   ).then(response => response.data)
 }

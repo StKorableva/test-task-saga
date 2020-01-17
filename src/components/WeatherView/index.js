@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import { getWeather } from "../../store/actions/weatherActions";
+import {fetchWeatherRequest} from "../../store/sagas/getWeather";
 import WeatherView from "./WeatherView";
 import selector from "../../selectors/weatherSelector";
 
@@ -11,7 +11,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
   getWeather() {
-    dispatch(getWeather(ownProps.city));
+    dispatch(fetchWeatherRequest(ownProps.city));
   }
 });
 export default connect(mapStateToProps, mapDispatchToProps)(WeatherView);

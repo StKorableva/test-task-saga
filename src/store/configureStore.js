@@ -1,20 +1,24 @@
 import { compose, createStore, applyMiddleware } from "redux";
-import thunk from "redux-thunk";
+import createSagaMiddleware from "redux-saga";
 import { weatherReducer } from "./reducers/weatherReducer";
+import getWeather from "./sagas/getWeather";
+const sagaMiddleware = createSagaMiddleware();
+
 
 export const configureStore = () => {
   const initialState = {
     weather: {},
     isFetching: false,
-    error: ''
+    error: ""
   };
   const store = createStore(
     weatherReducer,
     initialState,
     compose(
-      applyMiddleware(thunk),
+      applyMiddleware(sagaMiddleware),
       window.devToolsExtension ? window.devToolsExtension() : f => f
     )
   );
+  sagaMiddleware.run(getWeather);
   return store;
-}
+};

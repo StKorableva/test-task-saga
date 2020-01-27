@@ -6,22 +6,18 @@ describe('weather reducer', () => {
         expect(weatherReducer(undefined, {})).toEqual({});
     });
 
-    it('reducer should SET WEATHER', ()=> {
+    it('reducer should get data and put it in store', ()=> {
         const newState = { weather: {temp: 280.5}, error: '' }
-        expect(weatherReducer({}, { type: 'SET_WEATHER', weather: {temp: 280.5}, error: ''})).toEqual(newState);
+        expect(weatherReducer({}, { type: 'WEATHER_FETCH_SUCCESS', weather: {temp: 280.5}, error: ''})).toEqual(newState);
     });
 
-    it('reducer should START FETCHING', () => {
+    it('reducer should start fetching', () => {
         const newState = { isFetching: true };
-		expect(weatherReducer({}, { type: 'START_FETCHING', isFetching: true })).toEqual(newState);
+		expect(weatherReducer({}, { type: 'WEATHER_FETCH_START', isFetching: true })).toEqual(newState);
     });
-    it('reducer should RESET FETCHING', () => {
-        const newState = { isFetching: false };
-		expect(weatherReducer({}, { type: 'RESET_FETCHING', isFetching: false })).toEqual(newState);
-    });
-    it('reducer should SET ERROR', () => {
+    it('reducer should set error', () => {
         const newState = { error: 'error message' };
-		expect(weatherReducer({}, { type: 'SET_ERROR', error: 'error message' })).toEqual(newState);
+		expect(weatherReducer({}, { type: 'WEATHER_FETCH_ERROR', error: 'error message' })).toEqual(newState);
     });
 
 })

@@ -1,42 +1,37 @@
 import { call, put, takeLatest } from "redux-saga/effects";
 import getWeatherApi from "../../service/serviceAPI";
 
-const setWeather = weather => ({
-  type: "SET_WEATHER",
+export const weatherFetchingSuccess = weather => ({
+  type: "WEATHER_FETCH_SUCCESS",
   weather
 });
 
-const startFetching = () => ({
-  type: "START_FETCHING"
+export const weatherIsFetching = () => ({
+  type: "WEATHER_FETCH_START"
 });
 
-const resetFetching = () => ({
-  type: "RESET_FETCHING"
-});
-
-const setError = error => ({
-  type: "SET_ERROR",
+export const weatherHasError = error => ({
+  type: "WEATHER_FETCH_ERROR",
   error
 });
 
-export const fetchWeatherRequest = city => ({
-  type: 'FETCH_WEATHER',
-  payload: city
+export const weatherFetchingRequest = city => ({
+  type: 'WEATHER_FETCH_REQUEST',
+  city
 })
 
-function* fetchWeather(action) {
+export function* fetchWeather(action) {
   try {
-    yield put(startFetching());
-    const weather = yield call(getWeatherApi, action.payload);
-    yield put(setWeather(weather));
-    yield put(resetFetching());
+    yield put(weatherIsFetching());
+    const weather = yield call(getWeatherApi,action.city);
+    yield put(weatherFetchingSuccess(weather));
   } catch (error) {
-    yield put(setError(error));
+    yield put(weatherHasError(error));
   }
 }
 
 function* getWeather() {
-  yield takeLatest("FETCH_WEATHER", fetchWeather);
+  yield takeLatest("WEATHER_FETCH_REQUEST", fetchWeather);
 }
 
 export default getWeather;
